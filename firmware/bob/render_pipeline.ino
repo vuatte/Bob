@@ -1,4 +1,4 @@
-﻿// Extracted from bob.ino for modular structure
+// Extracted from bob.ino for modular structure
 
 // Render pipeline: eye tracking render helpers, matrix/confetti and draw loop
 

@@ -1,4 +1,4 @@
-﻿// Extracted from bob.ino for modular structure
+// Extracted from bob.ino for modular structure
 
 // Sensor pipeline: proximity, microphone, IMU and presence notifications
 

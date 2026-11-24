@@ -1,4 +1,4 @@
-﻿// Extracted from bob.ino for modular structure
+// Extracted from bob.ino for modular structure
 
 // Sleep/deep-sleep power lifecycle management
 extern String runtimeMqttUser;

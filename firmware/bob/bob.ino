@@ -1,4 +1,4 @@
-﻿// Bob - M5Stack CoreS3 Lite Animated Eyes
+// Bob - M5Stack CoreS3 Lite Animated Eyes
 #include <M5Unified.h>
 #include <M5CoreS3.h>
 #include <M5GFX.h>
@@ -1099,39 +1099,39 @@ body{font-family:'Segoe UI',sans-serif;background:var(--bg);color:var(--text);mi
 </div>
 <script>
 let matrixOn=false,snowOn=false,camOn=false,webStreamOn=false,webStreamTimer=null;
-function post(data){fetch('/control/run',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams(data)}).catch(()=>{});}
-function act(a){post({action:a});}
-function setE(v,btn){
+/* JS */ function post(data){fetch('/control/run',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams(data)}).catch(()=>{});}
+/* JS */ function act(a){post({action:a});}
+/* JS */ function setE(v,btn){
   post({action:'personality',value:v});
   document.querySelectorAll('.ebtn').forEach(b=>b.classList.remove('active'));
   if(btn) btn.classList.add('active');
 }
-function sendNotifyText(){
+/* JS */ function sendNotifyText(){
   const el=document.getElementById('notify-text');
   const txt=(el&&el.value?el.value.trim():'');
   if(!txt)return;
   post({action:'notify',value:'generic',text:txt});
   el.value='';
 }
-function loadSnapshot(){const img=document.getElementById('cam-preview');img.src='/snapshot?ts='+Date.now();}
-function startWebStream(){if(webStreamOn)return;webStreamOn=true;loadSnapshot();webStreamTimer=setInterval(loadSnapshot,350);}
-function stopWebStream(){webStreamOn=false;if(webStreamTimer){clearInterval(webStreamTimer);webStreamTimer=null;}}
-function syncWebStream(){if(camOn)startWebStream();else stopWebStream();}
-function cameraSnapshot(){loadSnapshot();post({action:'camera_snapshot'});}
-function toggleCameraStream(){
+/* JS */ function loadSnapshot(){const img=document.getElementById('cam-preview');img.src='/snapshot?ts='+Date.now();}
+/* JS */ function startWebStream(){if(webStreamOn)return;webStreamOn=true;loadSnapshot();webStreamTimer=setInterval(loadSnapshot,350);}
+/* JS */ function stopWebStream(){webStreamOn=false;if(webStreamTimer){clearInterval(webStreamTimer);webStreamTimer=null;}}
+/* JS */ function syncWebStream(){if(camOn)startWebStream();else stopWebStream();}
+/* JS */ function cameraSnapshot(){loadSnapshot();post({action:'camera_snapshot'});}
+/* JS */ function toggleCameraStream(){
   camOn=!camOn;
   post({action:'camera_stream',value:camOn?'on':'off'});
   document.getElementById('t-cam').classList.toggle('on',camOn);
   syncWebStream();
 }
-function toggleMode(m){
+/* JS */ function toggleMode(m){
   if(m==='matrix'){matrixOn=!matrixOn;post({action:'matrix',value:matrixOn?'on':'off'});document.getElementById('t-matrix').classList.toggle('on',matrixOn);}
   else if(m==='snow'){snowOn=!snowOn;post({action:'confetti',value:snowOn?'snow':'off'});document.getElementById('t-snow').classList.toggle('on',snowOn);}
   else if(m==='clock'){const el=document.getElementById('t-clock');const on=!el.classList.contains('on');post({action:'clock',value:on?'on':'off'});el.classList.toggle('on',on);}
   else if(m==='screensaver'){const el=document.getElementById('t-saver');const on=!el.classList.contains('on');post({action:'screensaver',value:on?'on':'off'});el.classList.toggle('on',on);document.getElementById('t-clock').classList.toggle('on',on);}
 }
 let bTimer;
-function setBrightness(v){
+/* JS */ function setBrightness(v){
   const pct=Math.max(1,Math.min(100,parseInt(v||'50',10)));
   document.getElementById('brightness-val').textContent=pct;
   const raw=Math.round((pct*255)/100);
@@ -1139,8 +1139,8 @@ function setBrightness(v){
   bTimer=setTimeout(()=>post({action:'brightness',value:String(raw)}),300);
 }
 let wTimer;
-function setWakeTime(v){document.getElementById('wake-val').textContent=v;clearTimeout(wTimer);wTimer=setTimeout(()=>post({action:'wake_time',value:v}),300);}
-function pollStatus(){
+/* JS */ function setWakeTime(v){document.getElementById('wake-val').textContent=v;clearTimeout(wTimer);wTimer=setTimeout(()=>post({action:'wake_time',value:v}),300);}
+/* JS */ function pollStatus(){
   fetch('/api/status').then(r=>r.json()).then(d=>{
     const em=(d.personality||'neutral').toLowerCase();
     document.querySelectorAll('.ebtn').forEach(b=>b.classList.toggle('active', b.dataset.emotion===em));

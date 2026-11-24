@@ -14,6 +14,12 @@ Main firmware for Bob.
 
 Open `bob.ino`, select the correct COM port, and upload.
 
+## PlatformIO
+
+Open the repository root as a PlatformIO project and use the Build action. The
+`m5stack-cores3` environment uses the same local `config.h` as Arduino IDE.
+Connect the board and use Upload when you are ready to flash the firmware.
+
 ## Hardware Note
 - Supported: `M5Stack CoreS3 Lite / CoreS3`
 - Not supported for this firmware: `M5AtomS3`

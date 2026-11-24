@@ -1,4 +1,4 @@
-﻿// Extracted from bob.ino for modular structure
+// Extracted from bob.ino for modular structure
 
 // Behavior engine: emotion tweening, state transitions and behavior routing
 
